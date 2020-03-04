@@ -1143,7 +1143,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1152168794}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1999175697}
+        m_MethodName: SendTextMessage_Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1152168794
@@ -1427,7 +1438,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 33.75, y: 0}
   m_SizeDelta: {x: -37.5, y: 0}
   m_Pivot: {x: 0.1, y: 0}
 --- !u!114 &1512994528
@@ -1843,10 +1854,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91ba4221a9a2e5043a0833beb0c0ac08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MessageLimit: 5
+  MessageLimit: 10
   ChatPanel: {fileID: 1512994526}
   TextObject: {fileID: 6598463773156518279, guid: e470e7d9b7fca414090a7e5f4a01e874,
     type: 3}
+  InputText: {fileID: 193806667}
 --- !u!4 &1999175696
 Transform:
   m_ObjectHideFlags: 0
@@ -1870,6 +1882,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1999175694}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed6b99d9ee79e544a8fc761060a9d6de, type: 3}
+  m_Script: {fileID: 11500000, guid: cf448bba56de9c448a1e847359051b1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
