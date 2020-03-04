@@ -1,16 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    int maxMessages = 25;
-    public GameObject chatPanel, textObject;
+    public int MessageLimit = 5;
+    public GameObject ChatPanel, TextObject;
 
     [SerializeField]
-    List<Message> messageList = new List<Message>();
+    Queue<Message> _messageList = new Queue<Message>();
     // Start is called before the first frame update
+    
 
     private void Update()
     {
@@ -20,14 +22,17 @@ public class GameManager : MonoBehaviour
 
     public void SendMessageToChat(string text)
     {
-        if (messageList.Count >= maxMessages)
-            messageList.Remove(messageList[0]);
+        //_messageList의 Count 값이 MessageLimit 값 초과시 기존 오브젝트 풀링을 이용하여 재활용.
+        if (_messageList.Count >= MessageLimit)
+            MakeMessage(_messageList.Dequeue(), text);
+        else
+            MakeMessage(new Message(Instantiate(TextObject, ChatPanel.transform),text), text);
+    }
 
-        Message newMessage = new Message();
-        newMessage.text = text;
-        newMessage.textObject = Instantiate(textObject,chatPanel.transform);
-        newMessage.textObject.GetComponent<Text>().text = newMessage.text;
-        messageList.Add(newMessage);
+    private void MakeMessage(Message message , string text)
+    {
+        message.SetTextMessage(text);
+        _messageList.Enqueue(message);
     }
 
 }
@@ -36,7 +41,17 @@ public class GameManager : MonoBehaviour
 [SerializeField]
 public class Message
 {
-    public string text;
-    public GameObject textObject;
+    private GameObject TextObject;
+
+    public Message(GameObject messages, string text)
+    {
+        TextObject = messages;
+        SetTextMessage(text);
+    }
+
+    public void SetTextMessage(string text)
+    {
+        TextObject.GetComponent<Text>().text = text;
+    }
 }
         
