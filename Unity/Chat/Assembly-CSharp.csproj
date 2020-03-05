@@ -306,6 +306,9 @@
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>C:/Users/MSI/Documents/GitHub/UnityChat_ASP/Unity/Chat/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
+    <Reference Include="LitJson">
+      <HintPath>C:/Users/MSI/Documents/GitHub/UnityChat_ASP/Unity/Chat/Assets/Scenes/Plugin/LitJson.dll</HintPath>
+    </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.6f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
     </Reference>

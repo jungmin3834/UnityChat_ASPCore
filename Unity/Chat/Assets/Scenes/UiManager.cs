@@ -19,12 +19,13 @@ public class UiManager : MonoBehaviour
         if (InputText.text.Trim().Equals("") == true)
             return;
 
-        SendMessageToChat(InputText.text);
+        ServerManager.instance.SendMessageToServer(this,InputText.text);
         InputText.text = String.Format("");
     }
 
-    private void SendMessageToChat(string text)
+    public void SendMessageToChat(string userName, string userText)
     {
+        string text = string.Format($"{userName} : {userText}");
         //_messageList의 Count 값이 MessageLimit 값 초과시 기존 오브젝트 풀링을 이용하여 재활용.
         if (_messageList.Count >= MessageLimit)
             MakeMessage(_messageList.Dequeue(), text);

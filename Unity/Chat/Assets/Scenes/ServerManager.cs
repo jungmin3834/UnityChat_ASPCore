@@ -4,32 +4,50 @@ using System.IO;
 using System.Net;
 using UnityEngine;
 using UnityEngine.Networking;
+using LitJson;
+
+public class ChatViewModel
+{
+    public string UserName { get; set; }
+
+    public string UserText { get; set; }
+}
 
 public class ServerManager : MonoBehaviour
 {
 
-    //The URL to the server - In our case localhost with port number 2475
-    private string url = @"https://localhost:44359/HelloWorld/welcome";
+    public static ServerManager instance;
 
     private void Start()
     {
-        StartCoroutine(postUnityWebRequest());
+        instance = this;
     }
 
-
-    IEnumerator postUnityWebRequest()
+    public void SendMessageToServer(UiManager uiMannager, string text)
     {
-        string url = "https://localhost:44359/HelloWorld/welcome";
+        StartCoroutine(postUnityWebRequest(uiMannager, text));
+    }
+    
+    IEnumerator postUnityWebRequest(UiManager uiMannager, string text)
+    {
+        WWWForm form = new WWWForm();
 
-        WWW www = new WWW(url);
-        while (!www.isDone)
-            yield return null;
+        form.AddField("UserName", "_aid");
+        form.AddField("UserText", text);
 
-        if (string.IsNullOrEmpty(www.error))
+        UnityWebRequest www = UnityWebRequest.Post("localhost:52460/Chat/", form);
+        yield return www.SendWebRequest();
+
+
+
+        if (www.isNetworkError || www.isHttpError)
         {
-            Debug.Log(www.text);
+            Debug.Log(www.error);
         }
         else
-            Debug.Log(www.error);
+        {
+            JsonData Objects = JsonMapper.ToObject(www.downloadHandler.text);
+            uiMannager.SendMessageToChat(Objects["userName"].ToString(), Objects["userText"].ToString());
+        }
     }
 }
