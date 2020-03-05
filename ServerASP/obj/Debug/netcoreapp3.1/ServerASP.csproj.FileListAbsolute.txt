@@ -1,0 +1,11 @@
+C:\Users\MSI\Documents\GitHub\UnityChat_ASP\ServerASP\bin\Debug\netcoreapp3.1\ServerASP.exe
+C:\Users\MSI\Documents\GitHub\UnityChat_ASP\ServerASP\bin\Debug\netcoreapp3.1\ServerASP.deps.json
+C:\Users\MSI\Documents\GitHub\UnityChat_ASP\ServerASP\bin\Debug\netcoreapp3.1\ServerASP.runtimeconfig.json
+C:\Users\MSI\Documents\GitHub\UnityChat_ASP\ServerASP\bin\Debug\netcoreapp3.1\ServerASP.runtimeconfig.dev.json
+C:\Users\MSI\Documents\GitHub\UnityChat_ASP\ServerASP\bin\Debug\netcoreapp3.1\ServerASP.dll
+C:\Users\MSI\Documents\GitHub\UnityChat_ASP\ServerASP\bin\Debug\netcoreapp3.1\ServerASP.pdb
+C:\Users\MSI\Documents\GitHub\UnityChat_ASP\ServerASP\obj\Debug\netcoreapp3.1\ServerASP.csprojAssemblyReference.cache
+C:\Users\MSI\Documents\GitHub\UnityChat_ASP\ServerASP\obj\Debug\netcoreapp3.1\ServerASP.AssemblyInfoInputs.cache
+C:\Users\MSI\Documents\GitHub\UnityChat_ASP\ServerASP\obj\Debug\netcoreapp3.1\ServerASP.AssemblyInfo.cs
+C:\Users\MSI\Documents\GitHub\UnityChat_ASP\ServerASP\obj\Debug\netcoreapp3.1\ServerASP.dll
+C:\Users\MSI\Documents\GitHub\UnityChat_ASP\ServerASP\obj\Debug\netcoreapp3.1\ServerASP.pdb
