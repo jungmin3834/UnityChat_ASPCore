@@ -9,6 +9,7 @@ C:\Users\MSI\Documents\GitHub\UnityChat_ASP\ServerASP\ServerASP\bin\Debug\netcor
 C:\Users\MSI\Documents\GitHub\UnityChat_ASP\ServerASP\ServerASP\bin\Debug\netcoreapp3.1\ServerASP.pdb
 C:\Users\MSI\Documents\GitHub\UnityChat_ASP\ServerASP\ServerASP\bin\Debug\netcoreapp3.1\ServerASP.Views.dll
 C:\Users\MSI\Documents\GitHub\UnityChat_ASP\ServerASP\ServerASP\bin\Debug\netcoreapp3.1\ServerASP.Views.pdb
+C:\Users\MSI\Documents\GitHub\UnityChat_ASP\ServerASP\ServerASP\obj\Debug\netcoreapp3.1\ServerASP.csprojAssemblyReference.cache
 C:\Users\MSI\Documents\GitHub\UnityChat_ASP\ServerASP\ServerASP\obj\Debug\netcoreapp3.1\ServerASP.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\MSI\Documents\GitHub\UnityChat_ASP\ServerASP\ServerASP\obj\Debug\netcoreapp3.1\ServerASP.RazorAssemblyInfo.cache
 C:\Users\MSI\Documents\GitHub\UnityChat_ASP\ServerASP\ServerASP\obj\Debug\netcoreapp3.1\ServerASP.RazorAssemblyInfo.cs
