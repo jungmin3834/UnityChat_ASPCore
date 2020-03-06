@@ -5,6 +5,10 @@ using System.Net;
 using UnityEngine;
 using UnityEngine.Networking;
 using LitJson;
+using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.AspNetCore.SignalR.Protocol;
+using System.Threading.Tasks;
+using System;
 
 public class ChatViewModel
 {
@@ -15,19 +19,73 @@ public class ChatViewModel
 
 public class ServerManager : MonoBehaviour
 {
-
+    private UiManager _uiMannager;
+    private HubConnection _connection;
     public static ServerManager instance;
 
     private void Start()
     {
         instance = this;
-    }
-
-    public void SendMessageToServer(UiManager uiMannager, string text)
-    {
-        StartCoroutine(postUnityWebRequest(uiMannager, text));
+        Connect();
     }
     
+    private void Connect()
+    {
+        try
+        {
+            _connection = new HubConnectionBuilder()
+           .WithUrl("https://localhost:44361/chat")
+           .Build();
+
+            Debug.Log("Starting connection...");
+            _connection.On<string, string>("broadcastMessage", (s1, s2) => OnSend(s1, s2));
+            Task.Run(() =>  _connection.StartAsync());
+        }
+        catch(Exception ex)
+        {
+            Debug.Log($"Connection Error :  { ex.Message} ");
+        }
+
+        Debug.Log("Connection established.");
+    }
+
+    private void DisConnect()
+    {
+        try
+        {
+            Task.Run(() =>  _connection.StopAsync());
+        }
+        catch(Exception ex)
+        {
+            Debug.Log($"Close Error : {ex.Message}");
+        }
+    }
+
+    private void OnSend(string name, string message)
+    {
+        _uiMannager.SendMessageToChat(name, message);
+    }
+    
+    public void SendMessageToServer(UiManager uiMannager, string text)
+    {
+        Task.Run(() => sendMessage(text));
+    }
+    
+    async void sendMessage(string text)
+    {
+        try
+        {
+            await _connection.InvokeAsync("Send", "_aid", text);
+        }
+        catch (Exception ex)
+        {
+            Debug.Log("Error : " + ex.Message);
+            return;
+        }
+    }
+
+    #region Post
+    //Post 방식   
     IEnumerator postUnityWebRequest(UiManager uiMannager, string text)
     {
         WWWForm form = new WWWForm();
@@ -37,8 +95,6 @@ public class ServerManager : MonoBehaviour
 
         UnityWebRequest www = UnityWebRequest.Post("localhost:52460/Chat/", form);
         yield return www.SendWebRequest();
-
-
 
         if (www.isNetworkError || www.isHttpError)
         {
@@ -50,4 +106,6 @@ public class ServerManager : MonoBehaviour
             uiMannager.SendMessageToChat(Objects["userName"].ToString(), Objects["userText"].ToString());
         }
     }
+
+    #endregion
 }

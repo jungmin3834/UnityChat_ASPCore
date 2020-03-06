@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <linker>
+    <assembly fullname="Microsoft">
+      <namespace fullname="Microsoft.AspNetCore.Connections.Abstractions" preserve="all"/>
+      <namespace fullname="Microsoft.AspNetCore.Http.Connections.Client" preserve="all"/>
+      <namespace fullname="Microsoft.AspNetCore.Http.Connections.Common" preserve="all"/>
+      <namespace fullname="Microsoft.AspNetCore.Http.Features" preserve="all"/>
+      <namespace fullname="Microsoft.AspNetCore.SignalR.Client.Core" preserve="all"/>
+      <namespace fullname="Microsoft.AspNetCore.SignalR.Client" preserve="all"/>
+      <namespace fullname="Microsoft.AspNetCore.SignalR.Common" preserve="all"/>
+      <namespace fullname="Microsoft.AspNetCore.SignalR.Protocols.Json" preserve="all"/>
+      <namespace fullname="Microsoft.Extensions.Configuration.Abstractions" preserve="all"/>
+      <namespace fullname="Microsoft.Extensions.Configuration.Binder" preserve="all"/>
+      <namespace fullname="Microsoft.Extensions.Configuration" preserve="all"/>
+      <namespace fullname="Microsoft.Extensions.DependencyInjection.Abstractions" preserve="all"/>
+      <namespace fullname="Microsoft.Extensions.DependencyInjection" preserve="all"/>
+      <namespace fullname="Microsoft.Extensions.Logging.Abstractions" preserve="all"/>
+      <namespace fullname="Microsoft.Extensions.Logging" preserve="all"/>
+      <namespace fullname="Microsoft.Extensions.Options" preserve="all"/>
+      <namespace fullname="Microsoft.Extensions.Primitives" preserve="all"/>
+    </assembly>
+    <assembly fullname="Newtonsoft.Json" preserve="all"/>
+    
+    <assembly fullname="System">
+      <namespace fullname="System.Buffers" preserve="all"/>
+      <namespace fullname="System.ComponentModel.Annotations" preserve="all"/>
+      <namespace fullname="System.IO.Pipelines" preserve="all"/>
+      <namespace fullname="System.Memory" preserve="all"/>
+      <namespace fullname="System.Numerics.Vectors" preserve="all"/>
+      <namespace fullname="System.Runtime.CompilerServices.Unsafe" preserve="all"/>
+      <namespace fullname="System.Text.Json" preserve="all"/>
+      <namespace fullname="System.Threading.Channels" preserve="all"/>
+      <namespace fullname="System.Threading.Tasks.Extensions" preserve="all"/>
+    </assembly>
+</linker>

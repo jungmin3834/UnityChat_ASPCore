@@ -12,7 +12,11 @@ public class UiManager : MonoBehaviour
     [SerializeField]
     Queue<Message> _messageList = new Queue<Message>();
     // Start is called before the first frame update
-    
+
+    private void Awake()
+    {
+
+    }
 
     public void Ui_SendMessage()
     {
