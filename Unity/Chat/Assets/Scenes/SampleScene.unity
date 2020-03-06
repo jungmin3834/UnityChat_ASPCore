@@ -1120,8 +1120,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1999175694}
-        m_MethodName: 
+      - m_Target: {fileID: 1999175697}
+        m_MethodName: SendTextMessage_Click
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1408,7 +1408,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 33.75, y: 0}
   m_SizeDelta: {x: -37.5, y: 0}
   m_Pivot: {x: 0.1, y: 0}
 --- !u!114 &1512994528

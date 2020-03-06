@@ -22,10 +22,22 @@ public class ServerManager : MonoBehaviour
     private UiManager _uiMannager;
     private HubConnection _connection;
     public static ServerManager instance;
+    private Stack<Chat> _chatList = new Stack<Chat>();
+
+
+    public Stack<Chat> GetMessageFromServer()
+    {
+        if (_chatList.Count != 0)
+        {
+            return _chatList;
+        }
+        return null;
+    }
 
     private void Start()
     {
         instance = this;
+        _uiMannager = this.GetComponent<UiManager>();
         Connect();
     }
     
@@ -61,9 +73,9 @@ public class ServerManager : MonoBehaviour
         }
     }
 
-    private void OnSend(string name, string message)
+    private void OnSend(string name ,string message)
     {
-        _uiMannager.SendMessageToChat(name, message);
+        _chatList.Push(new Chat(name, message));
     }
     
     public void SendMessageToServer(UiManager uiMannager, string text)
@@ -103,7 +115,7 @@ public class ServerManager : MonoBehaviour
         else
         {
             JsonData Objects = JsonMapper.ToObject(www.downloadHandler.text);
-            uiMannager.SendMessageToChat(Objects["userName"].ToString(), Objects["userText"].ToString());
+            uiMannager.SendMessageToChat(new Chat(Objects["userName"].ToString(), Objects["userText"].ToString()));
         }
     }
 
