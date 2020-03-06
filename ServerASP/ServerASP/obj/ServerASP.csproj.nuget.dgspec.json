@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MSI\\Documents\\GitHub\\UnityChat_ASP\\ServerASP\\ServerASP\\ServerASP.csproj": {}
+    "C:\\Users\\MSI\\Desktop\\ServerASP\\ServerASP\\ServerASP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MSI\\Documents\\GitHub\\UnityChat_ASP\\ServerASP\\ServerASP\\ServerASP.csproj": {
+    "C:\\Users\\MSI\\Desktop\\ServerASP\\ServerASP\\ServerASP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MSI\\Documents\\GitHub\\UnityChat_ASP\\ServerASP\\ServerASP\\ServerASP.csproj",
+        "projectUniqueName": "C:\\Users\\MSI\\Desktop\\ServerASP\\ServerASP\\ServerASP.csproj",
         "projectName": "ServerASP",
-        "projectPath": "C:\\Users\\MSI\\Documents\\GitHub\\UnityChat_ASP\\ServerASP\\ServerASP\\ServerASP.csproj",
+        "projectPath": "C:\\Users\\MSI\\Desktop\\ServerASP\\ServerASP\\ServerASP.csproj",
         "packagesPath": "C:\\Users\\MSI\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MSI\\Documents\\GitHub\\UnityChat_ASP\\ServerASP\\ServerASP\\obj\\",
+        "outputPath": "C:\\Users\\MSI\\Desktop\\ServerASP\\ServerASP\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\MSI\\AppData\\Roaming\\NuGet\\NuGet.Config",
