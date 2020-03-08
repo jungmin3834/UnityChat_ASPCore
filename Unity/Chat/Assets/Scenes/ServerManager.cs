@@ -51,7 +51,12 @@ public class ServerManager : MonoBehaviour
 
             Debug.Log("Starting connection...");
             _connection.On<string, string>("broadcastMessage", (s1, s2) => OnSend(s1, s2));
-            Task.Run(() =>  _connection.StartAsync());
+
+            Task.Run(() =>  _connection.StartAsync()
+            );
+
+            Task.Run(() => sendMessage("JoinGroup", "Test"));
+
         }
         catch(Exception ex)
         {
@@ -80,14 +85,14 @@ public class ServerManager : MonoBehaviour
     
     public void SendMessageToServer(UiManager uiMannager, string text)
     {
-        Task.Run(() => sendMessage(text));
+        Task.Run(() => sendMessage("SendMessage", text));
     }
     
-    async void sendMessage(string text)
+    async void sendMessage(string method,string text)
     {
         try
         {
-            await _connection.InvokeAsync("Send", "_aid", text);
+            await _connection.InvokeAsync(method, "_aid", text);
         }
         catch (Exception ex)
         {
