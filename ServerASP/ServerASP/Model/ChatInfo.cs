@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 
 namespace ServerASP.Model
 {
-    public class GameInfo
+    public class ChatInfo
     {
+
+        string _groupName;
         private bool _isEnd { get; set; }
         private string[] _idArray;
         private int _size = 0;
-        public GameInfo()
+        public ChatInfo()
         {
             _idArray = new string[4];
         }
