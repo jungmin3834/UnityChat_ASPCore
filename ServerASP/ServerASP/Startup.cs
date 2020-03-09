@@ -31,7 +31,7 @@ namespace ServerASP
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<ChatHub>("/chat");
+                endpoints.MapHub<ConnectHub>("/chat");
             });
         }
     }

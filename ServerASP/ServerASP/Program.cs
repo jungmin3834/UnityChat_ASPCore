@@ -6,13 +6,16 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ServerASP.Container;
 
 namespace ServerASP
 {
     public class Program
     {
+       
         public static void Main(string[] args)
         {
+            new UserContainer();
             CreateHostBuilder(args).Build().Run();
         }
 
