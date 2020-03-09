@@ -31,7 +31,7 @@ public class UiManager : MonoBehaviour
         if (InputText.text.Trim().Equals("") == true)
             return;
 
-        ServerManager.instance.SendMessageToServer(this,InputText.text);
+        ServerManager.instance.SendMessageToServer(InputText.text);
         InputText.text = String.Format("");
     }
 

@@ -40,7 +40,7 @@ public class ServerManager : MonoBehaviour
         _uiMannager = this.GetComponent<UiManager>();
         Connect();
     }
-    
+
     private void Connect()
     {
         try
@@ -50,20 +50,27 @@ public class ServerManager : MonoBehaviour
            .Build();
 
             Debug.Log("Starting connection...");
-            _connection.On<string, string>("broadcastMessage", (s1, s2) => OnSend(s1, s2));
 
-            Task.Run(() =>  _connection.StartAsync()
-            );
+            _connection.On<string, string>("BroadcastMessage", (s1, s2) => OnBroadcastMessage(s1, s2));
+            _connection.On<string>("ConnectionState", (s1) => OnConnectionMessage(s1));
 
-            Task.Run(() => sendMessage("JoinGroup", "Test"));
+            Task.Run(() => _connection.StartAsync());
+            Task.Run(() => SendConnectionToserver("ConnectionList", DateTime.Today.ToLongTimeString()));
+            Invoke("test",2);
+           
 
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Debug.Log($"Connection Error :  { ex.Message} ");
         }
 
         Debug.Log("Connection established.");
+    }
+
+    private void test()
+    {
+        Task.Run(() => SendConnectionToserver("JoinGroupList", ""));
     }
 
     private void DisConnect()
@@ -78,21 +85,41 @@ public class ServerManager : MonoBehaviour
         }
     }
 
-    private void OnSend(string name ,string message)
+    private void OnBroadcastMessage(string name ,string message)
     {
         _chatList.Push(new Chat(name, message));
     }
-    
-    public void SendMessageToServer(UiManager uiMannager, string text)
+
+    private void OnConnectionMessage(string message)
     {
-        Task.Run(() => sendMessage("SendMessage", text));
+        _chatList.Push(new Chat("System", message));
     }
-    
-    async void sendMessage(string method,string text)
+
+    public void SendMessageToServer(string text)
+    {
+        Task.Run(() => sendMessage("SendGroupMessage", text));
+    }
+
+
+    async void SendConnectionToserver(string method, string message)
     {
         try
         {
-            await _connection.InvokeAsync(method, "_aid", text);
+            await _connection.InvokeAsync(method, message);
+        }
+        catch (Exception ex)
+        {
+            Debug.Log("Error : " + ex.Message);
+            return;
+        }
+    }
+
+
+    async void sendMessage(string method,string userText)
+    {
+        try
+        {
+            await _connection.InvokeAsync(method, userText);
         }
         catch (Exception ex)
         {
