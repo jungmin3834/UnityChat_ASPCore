@@ -11,7 +11,6 @@ namespace ServerASP.Hubs
 {
     public class ConnectHub : Hub
     {
-
         public Task ConnectionList(string userName)
         {
             lock(UserContainer.Singleton.UserList){
@@ -24,39 +23,46 @@ namespace ServerASP.Hubs
         }
         public Task JoinGroupList(string groupName)
         {
-            lock(UserContainer.Singleton.UserList)
+            lock (UserContainer.Singleton.UserList)
             {
-              
                 UserInfo connections;
                 if (UserContainer.Singleton.UserList.TryGetValue(Context.ConnectionId, out connections) == false)
                     return Clients.Caller.SendAsync("ConnectionState", $"Fail {Context.ConnectionId}");
+
                 UserContainer.Singleton.GroupWaitList.Enqueue(connections);
 
-                
-                 if (UserContainer.Singleton.GroupWaitList.Count > 1)
-                 {
-                     string group = groupName.Count() == 0 ? "test" : groupName;
-                     //Group 생성
-                     for (int i = 2; i > 0; i--)
-                     {
-                        UserInfo info = UserContainer.Singleton.GroupWaitList.Dequeue();
-                        UserContainer.Singleton.UserList[info.UserId].GroupName = group;
-                        Clients.All.SendAsync("BroadcastMessage", "", $"Player 접속 : {info.UserId}");
-                        Groups.AddToGroupAsync(info.UserId, group);
-                        Clients.Group(group).SendAsync("BroadcastMessage", "System", $"{Context.ConnectionId} joined {groupName}");
-                    }
-                   
-                      return Clients.Group("test").SendAsync("BroadcastMessage", "System", "그룹 접속 성공");
-                 }
+                if (UserContainer.Singleton.GroupWaitList.Count < 2)
+                    return Clients.Caller.SendAsync("ConnectionState", $"Fail {UserContainer.Singleton.GroupWaitList.Count} :  {Context.ConnectionId}");
 
+                //test = 랜덤으로 생성되야할 이름 : groupName은 나중에 친구가 방 만든경우
+                string group = groupName.Count() == 0 ? "test" : groupName;
+                //Group 생성
+                Queue<UserInfo> userlist = new Queue<UserInfo>();
 
-                return Clients.Caller.SendAsync("ConnectionState", $"Fail {UserContainer.Singleton.GroupWaitList.Count} :  {Context.ConnectionId}");
-     
+                for (int i = 2; i > 0; i--)
+                {
+                    userlist.Enqueue(UserContainer.Singleton.GroupWaitList.Dequeue());
+                    UserContainer.Singleton.UserList[userlist.Last().UserId].GroupName = group;
+                    Groups.AddToGroupAsync(userlist.Last().UserId, group);
+                }
+                GroupControl groupControl = new GroupControl(userlist);
+                UserContainer.Singleton.GroupList.Add(group, groupControl);
+                return Clients.Group("test").SendAsync("BroadcastMessage", "System", "그룹 접속 성공");
             }
         }
 
         public async Task SendGroupMessage(string message)
         {
+            GroupControl groupControl;
+            if (UserContainer.Singleton.GroupList.TryGetValue("test", out groupControl) == false
+                || groupControl._playerOrder.Peek().UserId != Context.ConnectionId)
+            {
+                await Clients.Caller.SendAsync("BroadcastMessage", "System", "자기 차례가 아닙니다.");
+                return;
+            }
+            else
+                groupControl.PlayerOrderPopPush();
+
             UserInfo connections;
             if (UserContainer.Singleton.UserList.TryGetValue(Context.ConnectionId, out connections) == true)
             {

@@ -12,7 +12,7 @@ namespace ServerASP.Container
 
         public Dictionary<string, UserInfo> UserList = new Dictionary<string, UserInfo>();
         public Queue<UserInfo> GroupWaitList = new Queue<UserInfo>();
-
+        public Dictionary<string, GroupControl> GroupList = new Dictionary<string, GroupControl>();
         public UserContainer()
         {
             if (Singleton == null)
